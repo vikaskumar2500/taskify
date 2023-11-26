@@ -6,18 +6,15 @@ import { useOrganizationList } from "@clerk/nextjs";
 
 export const OrgControl = () => {
   const { organizationId }: { organizationId: string } = useParams();
-  console.log("testing", organizationId);
-  const { setActive } = useOrganizationList();
-
-  console.log("setActive", setActive);
+  const { setActive, isLoaded } = useOrganizationList();
 
   useEffect(() => {
-    console.log("useEffect triggered");
     if (!setActive) return;
 
     setActive({
       organization: organizationId,
     });
   }, [setActive, organizationId]);
+
   return null;
 };
