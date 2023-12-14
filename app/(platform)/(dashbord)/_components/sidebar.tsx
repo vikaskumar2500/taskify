@@ -48,7 +48,7 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
           <Skeleton className="w-[50%] h-10" />
           <Skeleton className="w-10 h-10" />
         </div>
-        <div className="space-y-2">
+        <div className="space-y-2"> 
           <NavItem.Skeleton />
           <NavItem.Skeleton />
           <NavItem.Skeleton />
@@ -56,6 +56,7 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
       </>
     );
   }
+  
 
   return (
     <>
@@ -78,7 +79,7 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
         defaultValue={defaultAccordionValue}
         className="space-y-2"
       >
-        {userMemberships.data.map(({ organization: org }) => (
+        {userMemberships?.data.map(({ organization: org }) => (
           <NavItem
             key={org.id}
             isActive={activeOrganization?.id === org.id}

@@ -1,7 +1,7 @@
 import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
-import { Menu, MenuIcon, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import React from "react";
 import { MobileSidebar } from "./mobile-sidebar";
 

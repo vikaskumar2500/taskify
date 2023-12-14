@@ -36,9 +36,11 @@ export const MobileSidebar = () => {
       >
         <Menu className="w-4 h-4" />
       </Button>
-      <Sheet open={isOpen} onOpenChange={onClose} >
-        <SheetContent side={'left'}>
-          <Sidebar storageKey="t-mobile-sidebar-state" />
+      <Sheet open={isOpen} onOpenChange={onClose}>
+        <SheetContent side={"left"}>
+          <div className="mt-10">
+            <Sidebar storageKey="t-mobile-sidebar-state" />
+          </div>
         </SheetContent>
       </Sheet>
     </>
