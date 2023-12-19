@@ -34,6 +34,9 @@ export const useAction = <TInput, TOutput>(
         console.log("result", result);
         if (!result) return;
 
+        setError(undefined);
+        setFieldErrors(undefined);
+
         if (result.fieldErrors) setFieldErrors(result.fieldErrors);
 
         if (result.error) {
@@ -42,9 +45,6 @@ export const useAction = <TInput, TOutput>(
         }
 
         if (result.data) {
-          setError(undefined);
-          setFieldErrors(undefined);
-
           setData(result.data);
 
           options.onSuccess?.(result.data);

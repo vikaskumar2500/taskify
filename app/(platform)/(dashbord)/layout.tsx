@@ -3,7 +3,7 @@ import { DashboardNavbar } from "./_components/navbar";
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div>
+    <div className="w-full min-h-screen flex flex-col">
       <DashboardNavbar />
       {children}
     </div>

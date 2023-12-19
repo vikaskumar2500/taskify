@@ -6,21 +6,21 @@ import { useFormStatus } from "react-dom";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { defaultImages } from "@/constants/images";
+import Link from "next/link";
+import { FormErrors } from "./form-errors";
 
 interface FormPickerProps {
   id: string;
   errors?: Record<string, string[] | undefined>;
-  onHandleImage: (image: any) => void;
 }
 
-export const FormPicker = ({ id, errors, onHandleImage }: FormPickerProps) => {
+export const FormPicker = ({ id, errors }: FormPickerProps) => {
   const { pending } = useFormStatus();
 
   const [images, setImages] =
     useState<Array<Record<string, any>>>(defaultImages);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedImageId, setSelectedImageId] = useState(null);
-  const [image, setImage] = useState(null);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -46,10 +46,6 @@ export const FormPicker = ({ id, errors, onHandleImage }: FormPickerProps) => {
     fetchImages();
   }, []);
 
-  useEffect(() => {
-    if (!image) onHandleImage(image as any);
-  }, [selectedImageId]);
-
   if (isLoading) {
     return (
       <div className="p-6 flex items-center justify-center">
@@ -71,9 +67,17 @@ export const FormPicker = ({ id, errors, onHandleImage }: FormPickerProps) => {
             onClick={() => {
               if (pending) return;
               setSelectedImageId(image.id);
-              setImage(image.urls.thumb);
             }}
           >
+            <input
+              id={id}
+              name={id}
+              type="radio"
+              checked={selectedImageId === image.id}
+              disabled={pending}
+              className="hidden"
+              value={`${image.id}|${image.urls.thumb}|${image.urls.full}|${image.user.name}|${image.links.html}`}
+            />
             <Image
               src={image.urls.thumb}
               alt="unsplash image"
@@ -81,12 +85,22 @@ export const FormPicker = ({ id, errors, onHandleImage }: FormPickerProps) => {
               fill
               priority
             />
+            <Link
+              href={image.links.html}
+              target="_blank"
+              className="opacity-0 group-hover:opacity-100 h-[15px] text-center absolute bottom-0 w-full text-[10px] truncate text-white hover:underline bg-black/50"
+            >
+              {image.user.name}
+            </Link>
             {selectedImageId === image.id && (
-              <Check className="absolute text-white w-5 h-5 ease-out duration-200 bottom-2 right-2 font-extrabold bg-blue-700 rounded-full p-1" />
+              <div className=" relative flex items-center justify-center w-auto h-[50px]">
+                <Check className=" text-white" />
+              </div>
             )}
           </div>
         ))}
       </div>
+      <FormErrors id="image" errors={errors} />
     </div>
   );
 };
