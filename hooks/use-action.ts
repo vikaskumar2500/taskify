@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { ActionState, fieldErrors } from "@/lib/create-safe-action";
 
 type Action<TInput, TOutput> = (
@@ -31,7 +31,6 @@ export const useAction = <TInput, TOutput>(
       try {
         const result = await action(input);
 
-        console.log("result", result);
         if (!result) return;
 
         setError(undefined);
