@@ -13,7 +13,7 @@ interface BoardTitleFormProps {
 }
 
 export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
-  const { execute } = useAction(updateBoard, {
+  const { execute, data: updateBoardData } = useAction(updateBoard, {
     onSuccess: (data) => {
       toast.success(`Board ${data.title} updated`);
       setTitle(data.title);
@@ -42,6 +42,9 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
 
   const onSubmit = (formData: FormData) => {
     const title = formData.get("title") as string;
+
+    if (title === data.title) return;
+
     execute({
       title,
       id: data.id,
@@ -65,6 +68,7 @@ export const BoardTitleForm = ({ data }: BoardTitleFormProps) => {
           defaultValue={title}
           className="text-lg font-bold px-[7px] bg-transparent focus-visible:outline-none focus-visible:ring-transparent border-none"
         />
+        <Button type="submit">Vikas</Button>
       </form>
     );
   }

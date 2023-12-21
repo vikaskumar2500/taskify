@@ -71,8 +71,9 @@ export const ListOptions = ({ data, onAddCard }: ListOptionsProps) => {
             className="h-auto w-auto p-2 absolute top-2 right-2 text-neutral-600"
             asChild
             variant="ghost"
+            size="sm"
           >
-            <X className="w-4 h-4" />
+            <X className="w-3 h-3" />
           </Button>
         </PopoverClose>
         <Button
