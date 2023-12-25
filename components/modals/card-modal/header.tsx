@@ -12,7 +12,7 @@ import { ElementRef, useRef, useState } from "react";
 import { toast } from "sonner";
 
 export const CardHeader = ({ data }: { data: any }) => {
-  const [title] = useState(data.title);
+  const [title, setTitle] = useState(data.title);
   const queryClient = useQueryClient();
   const params: any = useParams();
   const inputRef = useRef<ElementRef<"input">>(null);
@@ -22,7 +22,12 @@ export const CardHeader = ({ data }: { data: any }) => {
       queryClient.invalidateQueries({
         queryKey: ["card", data.id],
       });
+
+      queryClient.invalidateQueries({
+        queryKey: ["card-logs", data.id],
+      });
       toast.success(`Card updated`);
+      setTitle(data.title);
     },
     onError: (error) => toast.error(error),
   });
