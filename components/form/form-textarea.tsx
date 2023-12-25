@@ -58,7 +58,7 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(
             ref={ref}
             required={required}
             placeholder={placeholder}
-            name={id}
+            name={`${id}-${label}`}
             id={id}
             disabled={disabled || pending}
             className={cn(
@@ -74,3 +74,5 @@ export const FormTextarea = forwardRef<HTMLTextAreaElement, FormTextareaProps>(
     );
   }
 );
+
+FormTextarea.displayName = "FormTextarea";

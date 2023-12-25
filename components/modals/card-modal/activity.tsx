@@ -16,7 +16,7 @@ export const Activity = ({ items }: ActivityProps) => {
         <p className="font-semibold text-neutral-700 mb-2">Activity</p>
         <ol className="mt-2">
           {items.length !== 0 &&
-            items.map((item) => <ActivityItem data={item} />)}
+            items.map((item) => <ActivityItem key={item.id} data={item} />)}
           {items.length === 0 && (
             <p className="text-sm text-muted-foreground">No recent activity</p>
           )}

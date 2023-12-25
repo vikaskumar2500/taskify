@@ -17,7 +17,7 @@ export async function POST(req: NextResponse) {
       process.env.STRIPE_WEBHOOK_SECRET as string
     );
   } catch (error) {
-    return new NextResponse("Webhook error", { status: 400 });
+    return NextResponse.json("Webhook error", { status: 400 });
   }
 
   const session = event.data.object as Stripe.Checkout.Session;
@@ -27,7 +27,7 @@ export async function POST(req: NextResponse) {
       session.subscription as string
     );
     if (!session?.metadata?.orgId) {
-      return new NextResponse("Org ID is required", { status: 400 });
+      return NextResponse.json("Org ID is required", { status: 400 });
     }
 
     await db.orgSubscription.create({

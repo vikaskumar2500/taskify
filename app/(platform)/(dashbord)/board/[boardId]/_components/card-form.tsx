@@ -64,6 +64,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
         >
           <FormTextarea
             id="title"
+            key="title"
             onKeyDown={onTextareakeyDown}
             errors={fieldErrors}
             placeholder="Enter a title for this card..."
@@ -93,3 +94,5 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
     );
   }
 );
+
+CardForm.displayName = "CardForm";
