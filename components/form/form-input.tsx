@@ -40,7 +40,6 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     const {data, image} = useTitle();
     const { pending } = useFormStatus();
 
-    console.log('errors', errors?.title);
     return (
       <div className="space-y-2">
         <div className="space-y-1">

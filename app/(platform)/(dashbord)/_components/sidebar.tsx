@@ -20,7 +20,7 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
     {}
   );
 
-  const { organization: activeOrganization, isLoaded: isLoadedOrg } =
+  const { organization: activeOrganization } =
     useOrganization();
   const { userMemberships, isLoaded: isLoadedOrgList } = useOrganizationList({
     userMemberships: {
@@ -40,14 +40,14 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
     setExpended((curr) => ({ ...curr, [id]: !expended[id] }));
   };
 
-  if (!isLoadedOrg || !isLoadedOrgList || userMemberships.isLoading) {
+  if (!isLoadedOrgList) {
     return (
       <>
         <div className="flex items-center justify-between mb-2">
           <Skeleton className="w-[50%] h-10" />
           <Skeleton className="w-10 h-10" />
         </div>
-        <div className="space-y-2"> 
+        <div className="space-y-2">
           <NavItem.Skeleton />
           <NavItem.Skeleton />
           <NavItem.Skeleton />
@@ -55,12 +55,12 @@ export const Sidebar = ({ storageKey = "t-sidebar-state" }: SidebarProps) => {
       </>
     );
   }
-  
+
 
   return (
     <>
       <div className="font-medium text-xs flex items-center mb-1">
-        <span className="pl-4">workspaces</span>
+        <span className="pl-4 text-lg">Workspaces</span>
         <Button
           asChild
           type="button"

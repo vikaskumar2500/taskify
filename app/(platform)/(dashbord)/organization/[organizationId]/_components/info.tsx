@@ -9,8 +9,9 @@ interface InforProps {
 }
 
 const Info = ({ isPro }: InforProps) => {
-  const { organization, isLoaded } = useOrganization();
-  if (!isLoaded) return <Info.Skeleton />;
+  const { organization } = useOrganization();
+  if (!organization) return <Info.Skeleton />
+
   return (
     <div className="flex items-center gap-x-4">
       <div className="w-[60px] h-[60px] relative">

@@ -1,7 +1,7 @@
 import React from "react";
 import { FormPopover } from "@/components/form/form-popover";
 import { Hint } from "@/components/ui/hint";
-import { HelpCircle, User2 } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
@@ -43,7 +43,7 @@ const BoardList = async () => {
 
   return (
     <div className="space-y-4">
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 py-10 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {boards.map((board: BoardListProps) => (
           <Link
             key={board.id}
@@ -58,9 +58,8 @@ const BoardList = async () => {
         <FormPopover side="right" sideOffset={10}>
           <span className="aspect-video relative w-full h-full bg-muted rounded-sm flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition p-4">
             <p className="text-sm text-black">Create new board</p>
-            <span className="text-xs">{isPro?"Unlimited":`${
-              MAX_FREE_BOARDS - availableCount
-            } remaining`}</span>
+            <span className="text-xs">{isPro ? "Unlimited" : `${MAX_FREE_BOARDS - availableCount
+              } remaining`}</span>
             <Hint
               sideOffset={40}
               description="Free workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace."

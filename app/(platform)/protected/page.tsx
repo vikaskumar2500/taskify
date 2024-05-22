@@ -8,8 +8,7 @@ const ProtectedPage = () => {
   return (
     <div>
       {userId} and {user?.fullName}
-      <UserButton afterSignOutUrl="/"/>
-
+      <UserButton afterSignOutUrl="/" />
     </div>
   );
 };

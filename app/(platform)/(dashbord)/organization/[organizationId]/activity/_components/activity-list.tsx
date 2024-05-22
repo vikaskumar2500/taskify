@@ -2,7 +2,6 @@ import { ActivityItem } from "@/components/activity-item";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
-import { orderBy } from "lodash";
 import { redirect } from "next/navigation";
 
 export const ActivityList = async () => {
@@ -21,7 +20,7 @@ export const ActivityList = async () => {
   });
 
   return (
-    <ol className="space-y-4 mt-4">
+    <ol className="space-y-4 mt-4 w-full h-[80vh] overflow-y-scroll pb-10">
       <p className="hidden last:block text-xs text-center text-muted-foreground">
         No activity found inside this organization
       </p>
