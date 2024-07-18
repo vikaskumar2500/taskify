@@ -2,7 +2,6 @@
 import { authMiddleware, redirectToSignIn } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
-// Your component code...
 export default authMiddleware({
   publicRoutes: ["/", "/api/webhook"],
   afterAuth(auth, req) {
