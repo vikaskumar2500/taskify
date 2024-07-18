@@ -35,6 +35,7 @@ const BoardIdLayout = async ({
   params: { boardId: string };
 }) => {
   const { orgId } = auth();
+  console.log("params", params, orgId);
 
   if (!orgId) {
     redirect("/select-org");
@@ -52,7 +53,7 @@ const BoardIdLayout = async ({
   return (
     <div
       className="w-full min-h-screen border border-black bg-no-repeat bg-cover bg-center"
-      style={{ backgroundImage: `url(${board.imageFullUrl})` }}
+      style={{ backgroundImage: `url(${board?.imageFullUrl})` }}
     >
       <BoardNavbar data={board} />
       <div className="absolute inset-0 bg-black/10" />
