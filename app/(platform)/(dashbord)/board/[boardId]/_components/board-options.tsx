@@ -33,7 +33,7 @@ export const BoardOptions = ({ id }: BoardOptionsProps) => {
           <MoreHorizontal className="w-4 h-4" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="px-0 pt-3 pb-3">
+      <PopoverContent className="px-0 pt-3 pb-3 bg-white">
         <div className="text-sm font-medium text-center text-neutral-600">
           Board actions
         </div>

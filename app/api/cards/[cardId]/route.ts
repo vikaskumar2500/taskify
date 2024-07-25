@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
@@ -10,7 +10,7 @@ export const GET = async (
     const { orgId, userId } = auth();
 
     if (!orgId || !userId)
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse("UnuseAuthorized", { status: 401 });
 
     const card = await db.card.findUnique({
       where: {

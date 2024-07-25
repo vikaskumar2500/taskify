@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { notFound, redirect } from "next/navigation";
 import React from "react";
 import { BoardNavbar } from "./_components/board-navbar";

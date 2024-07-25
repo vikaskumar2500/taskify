@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 import { db } from "@/lib/db";
@@ -14,7 +14,7 @@ import { ACTION, ENTITY_TYPE } from "@prisma/client";
 const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
 
-  if (!userId || !orgId) return { error: "Unauthorized" };
+  if (!userId || !orgId) return { error: "UnuseAuthorized" };
 
   const { id, boardId } = data;
   let list;

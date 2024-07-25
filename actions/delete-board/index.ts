@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 import { db } from "@/lib/db";
@@ -18,7 +18,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   const { userId, orgId } = auth();
   const isPro = await checkSubscription();
 
-  if (!userId || !orgId) return { error: "Unauthorized" };
+  if (!userId || !orgId) return { error: "UnuseAuthorized" };
 
   const { id } = data;
   let board: any;

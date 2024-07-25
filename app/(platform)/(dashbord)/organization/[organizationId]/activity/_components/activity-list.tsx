@@ -1,11 +1,11 @@
 import { ActivityItem } from "@/components/activity-item";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 
 export const ActivityList = async () => {
-  const { orgId } = auth();
+  const { orgId} = auth();
 
   if (!orgId) return redirect("/select-org");
 

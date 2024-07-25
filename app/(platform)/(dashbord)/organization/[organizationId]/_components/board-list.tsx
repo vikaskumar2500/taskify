@@ -2,7 +2,7 @@ import React from "react";
 import { FormPopover } from "@/components/form/form-popover";
 import { Hint } from "@/components/ui/hint";
 import { HelpCircle } from "lucide-react";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import Link from "next/link";
@@ -56,7 +56,7 @@ const BoardList = async () => {
           </Link>
         ))}
         <FormPopover side="right" sideOffset={10}>
-          <span className="aspect-video relative w-full h-full bg-muted rounded-sm flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition p-4">
+          <span className="aspect-video bg-gray-100 cursor-pointer relative w-full h-full bg-muted rounded-sm flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition p-4">
             <p className="text-sm text-black">Create new board</p>
             <span className="text-xs">{isPro ? "Unlimited" : `${MAX_FREE_BOARDS - availableCount
               } remaining`}</span>

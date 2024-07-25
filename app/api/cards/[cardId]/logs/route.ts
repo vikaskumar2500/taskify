@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { ACTION, ENTITY_TYPE } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 export async function GET(
@@ -10,7 +10,7 @@ export async function GET(
     const { userId, orgId } = auth();
 
     if (!userId || !orgId) {
-      return new NextResponse("Unauthorized", { status: 401 });
+      return new NextResponse("UnuseAuthorized", { status: 401 });
     }
 
     const auditLogs = await db.auditLog.findMany({

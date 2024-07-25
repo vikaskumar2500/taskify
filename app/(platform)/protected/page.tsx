@@ -3,7 +3,7 @@ import { UserButton, useAuth, useUser } from "@clerk/nextjs";
 import React from "react";
 
 const ProtectedPage = () => {
-  const { userId } = useAuth();
+  const { userId } = useauth();
   const { user } = useUser();
   return (
     <div>

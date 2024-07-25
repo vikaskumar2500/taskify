@@ -26,7 +26,7 @@ export const ProModal = () => {
 
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
-      <DialogContent className="max-w-md p0 overflow-hidden">
+      <DialogContent className="max-w-md p-0 bg-white overflow-hidden">
         <div className="aspect-video relative flex items-center justify-center">
           <Image
             src="/hero.svg"
@@ -52,7 +52,8 @@ export const ProModal = () => {
           </div>
           <Button
             variant="primary"
-            className="w-full"
+            
+            className="w-full text-gray-700"
             disabled={isLoading}
             onClick={onClick}
           >

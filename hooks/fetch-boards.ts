@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { useQuery } from "@tanstack/react-query";
 import { redirect } from "next/navigation";
 

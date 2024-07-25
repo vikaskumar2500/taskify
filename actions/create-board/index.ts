@@ -1,6 +1,6 @@
 "use server";
 import { revalidatePath } from "next/cache";
-import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 import { InputType, ReturnType } from "./types";
 import { db } from "@/lib/db";
@@ -16,7 +16,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
 
   if (!userId || !orgId) {
     return {
-      error: "Unauthorized",
+      error: "UnuseAuthorized",
     };
   }
 
