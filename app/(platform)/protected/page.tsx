@@ -1,9 +1,9 @@
 "use client";
-import { UserButton, useAuth, useUser } from "@clerk/nextjs";
+import { UserButton, useUser, useAuth } from "@clerk/nextjs";
 import React from "react";
 
 const ProtectedPage = () => {
-  const { userId } = useauth();
+  const { userId } = useAuth();
   const { user } = useUser();
   return (
     <div>
