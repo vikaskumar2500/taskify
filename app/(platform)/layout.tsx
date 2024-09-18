@@ -4,8 +4,8 @@ import { Toaster } from "sonner";
 import { ModalProvider } from "@/components/providers/modal-provider";
 const PlatformLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <ClerkProvider >
-      <Toaster />
+    <ClerkProvider>
+      <Toaster richColors position="bottom-right"/>
       <ModalProvider />
       {children}
     </ClerkProvider>

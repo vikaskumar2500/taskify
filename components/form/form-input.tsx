@@ -37,7 +37,7 @@ export const FormInput = forwardRef<HTMLInputElement, FormInputProps>(
     },
     ref
   ) => {
-    const {data, image} = useTitle();
+    const {} = useTitle();
     const { pending } = useFormStatus();
 
     return (

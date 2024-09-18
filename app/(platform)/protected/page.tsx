@@ -6,10 +6,10 @@ const ProtectedPage = () => {
   const { userId } = useAuth();
   const { user } = useUser();
   return (
-    <div>
+    <>
       {userId} and {user?.fullName}
-      <UserButton afterSignOutUrl="/" />
-    </div>
+      <UserButton afterSwitchSessionUrl="/" />
+    </>
   );
 };
 
