@@ -1,11 +1,11 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider  = "postgresql"
   url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model Board {
@@ -13,44 +13,70 @@ model Board {
   orgId         String
   title         String
   imageId       String
-  imageThumbUrl String   @db.Text
-  imageFullUrl  String   @db.Text
-  imageUserName String   @db.Text
-  imageLinkHtml String   @db.Text
+  imageThumbUrl String
+  imageFullUrl  String
+  imageUserName String
+  imageLinkHtml String
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
-
-  lists List[]
+  lists         List[]
 }
 
 model List {
-  id      String @id @default(cuid())
-  title   String
-  order   Int
-  boardId String
-  board   Board  @relation(fields: [boardId], references: [id], onDelete: Cascade)
-
-  cards Card[]
-
+  id        String   @id @default(cuid())
+  title     String
+  order     Int
+  boardId   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  cards     Card[]
+  board     Board    @relation(fields: [boardId], references: [id], onDelete: Cascade)
 
   @@index([boardId])
 }
 
 model Card {
-  id          String  @id @default(cuid())
+  id          String   @id @default(cuid())
   title       String
   order       Int
-  description String? @db.Text
-
-  listId String
-  list   List   @relation(fields: [listId], references: [id], onDelete: Cascade)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  description String?
+  listId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  list        List     @relation(fields: [listId], references: [id], onDelete: Cascade)
 
   @@index([listId])
+}
+
+model AuditLog {
+  id          String      @id @default(cuid())
+  orgId       String
+  action      ACTION
+  entityId    String
+  entityType  ENTITY_TYPE
+  entityTitle String
+  userId      String
+  userImage   String
+  userName    String
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model OrgLimit {
+  id        String   @default(cuid())
+  orgId     String   @unique
+  count     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model OrgSubscription {
+  id                     String    @id @default(cuid())
+  orgId                  String    @unique
+  stripeCustomerId       String?   @unique @map("stripe_customer_id")
+  stripeSubscriptionId   String?   @unique @map("stripe_subscription_id")
+  stripePriceId          String?   @map("stripe_price_id")
+  stripeCurrentPeriodEnd DateTime? @map("stripe_current_period_end")
 }
 
 enum ACTION {
@@ -63,37 +89,4 @@ enum ENTITY_TYPE {
   BOARD
   LIST
   CARD
-}
-
-model AuditLog {
-  id          String      @id @default(cuid())
-  orgId       String
-  action      ACTION
-  entityId    String
-  entityType  ENTITY_TYPE
-  entityTitle String
-  userId      String
-  userImage   String      @db.Text
-  userName    String      @db.Text
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model OrgLimit {
-  id    String @default(cuid())
-  orgId String @unique
-  count Int    @default(0)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model OrgSubscription {
-  id                     String    @id @default(cuid())
-  orgId                  String    @unique
-  stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
-  stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
-  stripePriceId          String?   @map(name: "stripe_price_id")
-  stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
 }
