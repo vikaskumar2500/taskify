@@ -19,6 +19,7 @@ import { Activity } from "./activity";
 
 export const CardModal = () => {
   const { id, isOpen, onClose, onOpen } = useCardModal((state) => state);
+  console.log("id", id);
 
   const { data: cardData } = useQuery<CardWithLists>({
     queryKey: ["card", id],
